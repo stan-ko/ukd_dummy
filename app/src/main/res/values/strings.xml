@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="hello_world">Введіть слово і ми перевіримо чи воно паліндром</string>
+    <string name="et_word_hint">Введіть слово</string>
+    <string name="bt_label_is_palindrome">Перевірити чи паліндром</string>
+    <string name="yes">ТАК</string>
+    <string name="no">НІ</string>
+    <string name="info">Info</string>
+    <string name="button_label">Button label</string>
+    <string name="take_photo">Take photo</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="anon">Anonymously</string>
+    <string name="or_sign_in">Or Sign In</string>
+    <string name="e_mail_sign_in">Sign In by Email</string>
+    <string name="google">Google</string>
+
+
+</resources>

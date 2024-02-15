@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "818423644263",
+    "project_id": "ukd-dummy",
+    "storage_bucket": "ukd-dummy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818423644263:android:9038615ea01672e5a1d4c2",
+        "android_client_info": {
+          "package_name": "ua.ukd.dummy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCyP3jckfOnFnERZPZWnO_MOVBmSBVals"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

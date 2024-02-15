@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ShapeTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ShapeView" parent="ShapeTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:gravity">center</item>
+<!--        <item name="android:fontFamily">@font/roboto_medium</item>-->
+        <item name="android:textSize">20sp</item>
+<!--        <item name="back_shape">RoundRect</item>-->
+<!--        <item name="back_shape_color">@color/transparent</item>-->
+    </style>
+
+    <style name="ShapeView.Rounded">
+<!--        <item name="corners_radius">24dp</item>-->
+    </style>
+
+    <style name="ShapeView.Rounded.Transparent">
+<!--        <item name="corners_radius">64dp</item>-->
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:textColor">@color/btn_transparent_enabled_txt</item>
+<!--        <item name="gradient_start_color">@color/btn_transparent_bg_start_color</item>-->
+<!--        <item name="gradient_end_color">@color/btn_transparent_bg_end_color</item>-->
+<!--        <item name="gradient_direction">vertical</item>-->
+<!--        <item name="back_stroke_color">@color/btn_transparent_border</item>-->
+<!--        <item name="back_shape_border_width">2dp</item>-->
+<!--        <item name="back_shape_border">FILL_AND_STROKE</item>-->
+    </style>
+
+    <style name="ShapeView.Rounded.Transparent.Wide">
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+    </style>
+
+    <style name="ShapeView.Rounded.Green">
+<!--        <item name="corners_radius">64dp</item>-->
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:textColor">@color/btn_green_enabled_txt</item>
+<!--        <item name="gradient_start_color">@color/btn_green_bg_start_color</item>-->
+<!--        <item name="gradient_end_color">@color/btn_green_bg_end_color</item>-->
+<!--        <item name="gradient_direction">horizontal</item>-->
+    </style>
+
+    <style name="ShapeView.Rounded.Green.Wide">
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+    </style>
+
+    <style name="ShapeView.Rounded.Grey">
+<!--        <item name="corners_radius">64dp</item>-->
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:textColor">@color/btn_grey_enabled_txt</item>
+<!--        <item name="back_shape_color">@color/btn_grey_bg</item>-->
+    </style>
+
+    <style name="ShapeView.Rounded.Grey.Wide">
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+    </style>
+
+    <style name="ShapeView.Rounded.Delete">
+<!--        <item name="corners_radius">64dp</item>-->
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:textColor">#D45D5D</item>
+<!--        <item name="gradient_start_color">#22212B</item>-->
+<!--        <item name="gradient_end_color">#331B1B</item>-->
+<!--        <item name="gradient_direction">vertical</item>-->
+<!--        <item name="back_stroke_color">#5A3131</item>-->
+<!--        <item name="back_shape_border_width">2dp</item>-->
+<!--        <item name="back_shape_border">FILL_AND_STROKE</item>-->
+    </style>
+
+    <style name="ShapeView.Rounded.Delete.Wide">
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+    </style>
+
+    <style name="ShapeView.Rounded.LogOut.Wide">
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+    </style>
+
+    <style name="ShapeView.Rounded.LogOut">
+<!--        <item name="corners_radius">64dp</item>-->
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:textColor">#9BA1AF</item>
+<!--        <item name="gradient_start_color">#24242E</item>-->
+<!--        <item name="gradient_end_color">#383742</item>-->
+<!--        <item name="gradient_direction">vertical</item>-->
+<!--        <item name="back_stroke_color">#393943</item>-->
+<!--        <item name="back_shape_border_width">2dp</item>-->
+<!--        <item name="back_shape_border">FILL_AND_STROKE</item>-->
+    </style>
+
+
+    <style name="ShapeView.Rounded.Yellow">
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+<!--        <item name="corners_radius">64dp</item>-->
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingTop">20dp</item>
+        <item name="android:textColor">#202029</item>
+<!--        <item name="back_shape_color">#FAFF01</item>-->
+    </style>
+
+    <style name="TextInputLayout">
+        <item name="android:paddingStart">32dp</item>
+        <item name="android:paddingEnd">32dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:background">@color/transparent</item>
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:textColorHint">@color/hint</item>
+        <item name="hintTextColor">@color/hint</item>
+        <item name="boxBackgroundMode">none</item>
+    </style>
+
+    <style name="TextInputLayout.NoHint">
+        <item name="hintAnimationEnabled">false</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <style name="InputField">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:textColor">@color/edit_text</item>
+        <item name="android:textColorHint">@color/hint</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="InputField.Centered">
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ShapeTextView.Menu">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:drawablePadding">24dp</item>
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">#D2D0DE</item>
+    </style>
+
+    <style name="TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextView.OxaniumBold">
+<!--        <item name="android:fontFamily">@font/oxanium_semibold</item>-->
+    </style>
+
+    <style name="TextView.Oxanium">
+<!--        <item name="android:fontFamily">@font/oxanium_semibold</item>-->
+    </style>
+
+    <style name="TextView.TitleExtraBold">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/title</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+</resources>

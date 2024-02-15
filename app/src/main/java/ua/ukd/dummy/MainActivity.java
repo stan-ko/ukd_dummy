@@ -1,11 +1,13 @@
-package com.example.myapplication;
+package ua.ukd.dummy;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -21,6 +23,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -28,6 +31,7 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int RC_CAMERA_PERMISSION = 1025;
     private static final int RC_CAMERA = 1024;
     private File photoFile;
 
@@ -92,21 +96,50 @@ public class MainActivity extends AppCompatActivity {
         TextView btCam = findViewById(R.id.btCam);
 
         btCam.setOnClickListener(v -> {
-//            // browser activity start
+            checkCameraPermissions();
+        });
+
+    }
+
+    private void checkCameraPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            // You can use the API that requires the permission.
+            takePhoto();
+        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+            Toast.makeText(this,"No Camera Permission granted", Toast.LENGTH_SHORT).show();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, RC_CAMERA_PERMISSION);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case RC_CAMERA_PERMISSION:
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    takePhoto();
+                } else {
+                    Toast.makeText(this,"No Camera Permission granted", Toast.LENGTH_SHORT).show();
+                }
+        }
+    }
+
+    private void takePhoto() {
+        //            // browser activity start
 //            Intent intent = new Intent(Intent.ACTION_VIEW);
 //            String url = "https://www.stackoverflow.com";
 //            intent.setData(Uri.parse(url));
 //            startActivity(intent);
-            // Create the camera_intent ACTION_IMAGE_CAPTURE it will open the camera for capture the image
-            final File photoFile = createImageFile();
-            if (photoFile != null) {
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Create the camera_intent ACTION_IMAGE_CAPTURE it will open the camera for capture the image
+        final File photoFile = createImageFile();
+        if (photoFile != null) {
+            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-                // Start the activity with camera_intent, and request pic id
-                startActivityForResult(cameraIntent, RC_CAMERA);
-            }
-        });
-
+            // Start the activity with camera_intent, and request pic id
+            startActivityForResult(cameraIntent, RC_CAMERA);
+        }
     }
 
     private File createImageFile() {

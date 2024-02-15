@@ -1,4 +1,4 @@
-package com.example.myapplication
+package ua.ukd.dummy
 
 import org.junit.Test
 
