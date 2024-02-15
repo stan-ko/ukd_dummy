@@ -35,18 +35,18 @@
         <!--            android:orientation="vertical"-->
         <!--            app:layout_constraintGuide_percent="0.5" />-->
 
-        <ImageButton
+        <Button
             android:id="@+id/btCheck"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginEnd="10dp"
             android:padding="12dp"
             android:src="@drawable/ic_launcher_foreground"
             android:text="@string/bt_label_is_palindrome"
             android:textAllCaps="true"
             app:layout_constraintBottom_toBottomOf="@+id/btInfo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btInfo" />
+            app:layout_constraintTop_toTopOf="@+id/btInfo"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/btInfo"
@@ -84,6 +84,7 @@
             android:layout_marginStart="8dp"
             android:drawablePadding="8dp"
             android:padding="12dp"
+            android:gravity="center_vertical"
             android:text="@string/take_photo"
             app:drawableStartCompat="@drawable/ic_camera"
             app:layout_constraintBottom_toBottomOf="@+id/btInfo"
