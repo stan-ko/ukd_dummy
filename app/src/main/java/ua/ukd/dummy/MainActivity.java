@@ -23,7 +23,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -103,10 +102,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkCameraPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            // You can use the API that requires the permission.
             takePhoto();
         } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-            Toast.makeText(this,"No Camera Permission granted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,R.string.no_camera_permission_granted, Toast.LENGTH_SHORT).show();
         } else {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, RC_CAMERA_PERMISSION);
         }
@@ -117,11 +115,10 @@ public class MainActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case RC_CAMERA_PERMISSION:
-                // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     takePhoto();
                 } else {
-                    Toast.makeText(this,"No Camera Permission granted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.no_camera_permission_granted, Toast.LENGTH_SHORT).show();
                 }
         }
     }

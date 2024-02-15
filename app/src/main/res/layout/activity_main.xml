@@ -131,10 +131,11 @@
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
         android:text="CheckBox"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swSwitch" />
+        app:layout_constraintBottom_toBottomOf="@+id/swSwitch"
+        app:layout_constraintStart_toEndOf="@+id/swSwitch"
+        app:layout_constraintTop_toTopOf="@+id/swSwitch" />
 
     <ImageView
         android:id="@+id/ivPhoto"

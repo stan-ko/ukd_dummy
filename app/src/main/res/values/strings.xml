@@ -15,6 +15,7 @@
     <string name="or_sign_in">Or Sign In</string>
     <string name="e_mail_sign_in">Sign In by Email</string>
     <string name="google">Google</string>
+    <string name="no_camera_permission_granted">No Camera Permission granted</string>
 
 
 </resources>
