@@ -46,6 +46,8 @@
         <item name="android:paddingBottom">20dp</item>
         <item name="android:paddingTop">20dp</item>
         <item name="android:textColor">@color/btn_green_enabled_txt</item>
+        <item name="android:background">@color/btn_green_bg_end_color</item>
+
 <!--        <item name="gradient_start_color">@color/btn_green_bg_start_color</item>-->
 <!--        <item name="gradient_end_color">@color/btn_green_bg_end_color</item>-->
 <!--        <item name="gradient_direction">horizontal</item>-->
@@ -61,6 +63,7 @@
         <item name="android:paddingBottom">20dp</item>
         <item name="android:paddingTop">20dp</item>
         <item name="android:textColor">@color/btn_grey_enabled_txt</item>
+        <item name="android:background">@color/btn_grey_bg</item>
 <!--        <item name="back_shape_color">@color/btn_grey_bg</item>-->
     </style>
 
@@ -113,6 +116,7 @@
         <item name="android:paddingBottom">20dp</item>
         <item name="android:paddingTop">20dp</item>
         <item name="android:textColor">#202029</item>
+        <item name="android:background">#FAFF01</item>
 <!--        <item name="back_shape_color">#FAFF01</item>-->
     </style>
 

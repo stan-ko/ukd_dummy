@@ -1,8 +1,10 @@
 package ua.ukd.dummy;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpActivity extends Activity {
 
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -23,6 +24,34 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_sign_up);
 
+        final View btnSignUp = findViewById(R.id.btnSignUp);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signUp();
+            }
+        });
+
+
+        final View btGoogleSignIn = findViewById(R.id.btnGoogle);
+        btGoogleSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SignUpActivity.this, R.string.not_implemented, Toast.LENGTH_LONG).show();
+            }
+        });
+
+        final View btnAnon = findViewById(R.id.btnAnon);
+        btnAnon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                finish();
+            }
+        });
+    }
+
+    private void signUp() {
         // Initialize Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
 
@@ -33,6 +62,7 @@ public class SignUpActivity extends Activity {
         String email = edLogin.getText().toString();
         String password = adPass.getText().toString();
 
+        // fixme: validate email and pass!
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

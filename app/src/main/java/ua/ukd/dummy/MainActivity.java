@@ -1,32 +1,32 @@
 package ua.ukd.dummy;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,101 +60,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Switch sw = findViewById(R.id.swSwitch);
-        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Toast.makeText(MainActivity.this, "Switch is " + (b ? "On" : "Off"), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        CheckBox chk = findViewById(R.id.checkBox);
-        chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Toast.makeText(MainActivity.this, "CheckBox is " + (b ? "Checked" : "Unchecked"), Toast.LENGTH_SHORT).show();
-            }
-        });
+//        Switch sw = findViewById(R.id.swSwitch);
+//        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                Toast.makeText(MainActivity.this, "Switch is " + (b ? "On" : "Off"), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        CheckBox chk = findViewById(R.id.checkBox);
+//        chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                Toast.makeText(MainActivity.this, "CheckBox is " + (b ? "Checked" : "Unchecked"), Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         TextView tvResult = findViewById(R.id.tvResult);
         tvResult.setVisibility(View.VISIBLE);
         // tvResult.setText(R.string.button_label);
         View btCheck = findViewById(R.id.btCheck);
-        btCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean isPalindrome = checkIsPalindrome();
-                if (isPalindrome)
-                    tvResult.setText(R.string.yes);
-                else
-                    tvResult.setText(R.string.no);
-            }
+        btCheck.setOnClickListener(view -> {
+            boolean isPalindrome = checkIsPalindrome();
+            if (isPalindrome)
+                tvResult.setText(R.string.yes);
+            else
+                tvResult.setText(R.string.no);
         });
 
         // Camera_open button is for open the camera and add the setOnClickListener in this button
         TextView btCam = findViewById(R.id.btCam);
+        btCam.setOnClickListener(v -> checkCameraPermission());
 
-        btCam.setOnClickListener(v -> {
-            checkCameraPermissions();
-        });
+        View btAppInfo = findViewById(R.id.btnAppInfo);
+        btAppInfo.setOnClickListener(view -> showInfo());
 
     }
 
-    private void checkCameraPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            takePhoto();
-        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-            Toast.makeText(this,R.string.no_camera_permission_granted, Toast.LENGTH_SHORT).show();
-        } else {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, RC_CAMERA_PERMISSION);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case RC_CAMERA_PERMISSION:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    takePhoto();
-                } else {
-                    Toast.makeText(this, R.string.no_camera_permission_granted, Toast.LENGTH_SHORT).show();
-                }
-        }
-    }
-
-    private void takePhoto() {
-        //            // browser activity start
-//            Intent intent = new Intent(Intent.ACTION_VIEW);
-//            String url = "https://www.stackoverflow.com";
-//            intent.setData(Uri.parse(url));
-//            startActivity(intent);
-        // Create the camera_intent ACTION_IMAGE_CAPTURE it will open the camera for capture the image
-        final File photoFile = createImageFile();
-        if (photoFile != null) {
-            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
-            // Start the activity with camera_intent, and request pic id
-            startActivityForResult(cameraIntent, RC_CAMERA);
-        }
-    }
-
-    private File createImageFile() {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File image = null;
-        try {
-            image = File.createTempFile(
-                    imageFileName,  // prefix
-                    ".jpg",         // suffix
-                    getCacheDir()      // directory
-            );
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
 
     private boolean checkIsPalindrome() {
         EditText etWord = findViewById(R.id.etText);
@@ -170,25 +112,91 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    // This method will help to retrieve the image
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // Match the request 'pic id with requestCode
-        if (requestCode == RC_CAMERA) {
-            if (resultCode== Activity.RESULT_OK) {
-                // BitMap is data structure of image file which store the image in memory
-                Bitmap photo = (Bitmap) data.getExtras().get("data");
-//                // Set the image in imageview for display
-                ImageView ivImg = findViewById(R.id.ivPhoto);
-                ivImg.setImageBitmap(photo);
-//                try {
-//                    Bitmap photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.parse(mCurrentPhotoPath));
-//                    ivImg.setImageBitmap(photo);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+
+    ActivityResultLauncher<String> requestCameraPermission = registerForActivityResult(
+            new ActivityResultContracts.RequestPermission(),
+            isGranted -> {
+                if (isGranted) {
+                    // Permission granted, you can proceed with camera-related tasks
+                    takePhoto();
+                } else {
+                    showNoCameraPermissionDialog();
+                }
             }
-        }
+    );
+
+
+    private void showNoCameraPermissionDialog() {
+        new MaterialAlertDialogBuilder(this)
+                .setCancelable(false)
+                .setTitle(R.string.dialog_camera_permission_title)
+                .setMessage(R.string.dialog_permission_camera_message)
+                .setNeutralButton(R.string.open_settings, (dialog1, which) -> {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", getPackageName(), null);
+                    intent.setData(uri);
+                    startActivity(intent);
+                })
+                .setPositiveButton(R.string.ok, (dialog1, which) -> dialog1.dismiss())
+                .show();
     }
 
+    private void checkCameraPermission() {
+        requestCameraPermission.launch(Manifest.permission.CAMERA);
+    }
+
+    final ActivityResultLauncher<Intent> startForCameraResult = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    // Handle the result here (e.g., process the photo)
+                    final Intent data = result.getData();
+                    if (data != null) {
+                        // Get the full-resolution photo (not just the thumbnail)
+                        final Uri photoUri = data.getData();
+                        // Now you can work with the photoUri (e.g., save it to a file)
+                        // Utils.saveImageToJpeg(MainActivity.this, photoUri, 77);
+
+                        // and load it into an ImageView for display
+                        // ...
+                        // thumbnail image?
+                        final Bitmap photo = (Bitmap) data.getExtras().get("data");
+                        // Set the image in imageview for display
+                        final ImageView ivImg = findViewById(R.id.ivPhoto);
+                        ivImg.setImageBitmap(photo);
+                    }
+                }
+            }
+    );
+
+    private void takePhoto() {
+        // modern activity result API
+        // Launch the camera activity
+        final Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startForCameraResult.launch(cameraIntent);
+    }
+
+
+    private void showInfo() {
+        // Create a BottomSheetDialog
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+
+        // Inflate your custom layout for the bottom sheet
+        View bottomSheetView = getLayoutInflater().inflate(R.layout.bottom_sheet_layout, null);
+
+        TextView txtInfo = bottomSheetView.findViewById(R.id.txtInfo);
+        txtInfo.setText(R.string.app_info);
+
+        // Set any listeners or perform actions on views within the bottom sheet
+        // For example:
+        bottomSheetView
+                .findViewById(R.id.btnClose)
+                .setOnClickListener(v -> bottomSheetDialog.dismiss());
+
+        // Set the custom view for the bottom sheet
+        bottomSheetDialog.setContentView(bottomSheetView);
+
+        // Show the bottom sheet
+        bottomSheetDialog.show();
+    }
 }

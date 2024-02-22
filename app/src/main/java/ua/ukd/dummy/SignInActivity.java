@@ -1,13 +1,16 @@
 package ua.ukd.dummy;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SignInActivity extends Activity {
 
@@ -19,7 +22,7 @@ public class SignInActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_sign_in);
         // Check current authentication state
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        final FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             // User is signed in
             String uid = currentUser.getUid();
@@ -27,30 +30,45 @@ public class SignInActivity extends Activity {
         } else {
             // User is not signed in
             // Redirect to sign-in page or handle authentication flow
-
-            View btnSignIn = findViewById(R.id.btnSignIn);
+            final View btnSignIn = findViewById(R.id.btnSignIn);
             btnSignIn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     checkAuthState();
                 }
             });
-
-            View btnSignUp = findViewById(R.id.btnSignUp);
-            btnSignUp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
-                    finish();
-                }
-            });
         }
+        final View btForgotPassword = findViewById(R.id.btForgotPassword);
+        btForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SignInActivity.this, R.string.not_implemented, Toast.LENGTH_LONG).show();
+            }
+        });
+        final View btnSignUp = findViewById(R.id.btnSignUp);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+                finish();
+            }
+        });
+
+        final View btnAnon = findViewById(R.id.btnAnon);
+        btnAnon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                finish();
+            }
+        });
+
     }
 
 
     private void checkAuthState() {
         // Check current authentication state
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        final FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             // User is signed in
             String uid = currentUser.getUid();
@@ -59,9 +77,9 @@ public class SignInActivity extends Activity {
             // User is not signed in
             // Redirect to sign-in page or handle authentication flow
         }
-        EditText edLogin = findViewById(R.id.tifEmail);
-        EditText adPass = findViewById(R.id.tifPassword);
-
+        final EditText edLogin = findViewById(R.id.tifEmail);
+        final EditText adPass = findViewById(R.id.tifPassword);
+        // TODO: validate email and pass!!!
         // Example: Sign up a new user with email and password
         mAuth.createUserWithEmailAndPassword(edLogin.getText().toString(), adPass.getText().toString())
                 .addOnCompleteListener(task -> {
@@ -74,6 +92,17 @@ public class SignInActivity extends Activity {
                         // Handle the error (e.g., display an error message)
                     }
                 });
+    }
 
+    private void alertInvalidPassword() {
+        new MaterialAlertDialogBuilder(this)
+                .setCancelable(true)
+                .setMessage("Password must be at least 6 characters long")
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
     }
 }

@@ -16,6 +16,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/tilWord"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="@string/et_word_hint"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/etText"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/editControls"
         android:layout_width="0dp"
@@ -28,13 +47,6 @@
         app:layout_constraintTop_toBottomOf="@+id/etText"
         tools:visibility="visible">
 
-        <!--        <androidx.constraintlayout.widget.Guideline-->
-        <!--            android:id="@+id/hc"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:orientation="vertical"-->
-        <!--            app:layout_constraintGuide_percent="0.5" />-->
-
         <Button
             android:id="@+id/btCheck"
             android:layout_width="wrap_content"
@@ -43,39 +55,8 @@
             android:src="@drawable/ic_launcher_foreground"
             android:text="@string/bt_label_is_palindrome"
             android:textAllCaps="true"
-            app:layout_constraintBottom_toBottomOf="@+id/btInfo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btInfo"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/btInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/info"
-            app:layout_constraintStart_toEndOf="@+id/btCheck"
             app:layout_constraintTop_toTopOf="parent" />
-
-<!--        <LinearLayout-->
-<!--            android:id="@+id/llButton"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/btCheck">-->
-
-<!--            <ImageView-->
-<!--                android:layout_gravity="center_vertical"-->
-<!--                android:layout_width="48dp"-->
-<!--                android:layout_height="48dp"-->
-<!--                android:src="@drawable/ic_camera" />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="12dp"-->
-<!--                android:text="@string/take_photo" />-->
-<!--        </LinearLayout>-->
 
         <TextView
             android:id="@+id/btCam"
@@ -83,14 +64,26 @@
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:drawablePadding="8dp"
-            android:padding="12dp"
             android:gravity="center_vertical"
+            android:padding="12dp"
             android:text="@string/take_photo"
             app:drawableStartCompat="@drawable/ic_camera"
-            app:layout_constraintBottom_toBottomOf="@+id/btInfo"
-            app:layout_constraintStart_toEndOf="@+id/btInfo"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btCheck"
+            app:layout_constraintTop_toTopOf="parent" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/btSavePhoto"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginStart="8dp"-->
+<!--            android:drawablePadding="8dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:padding="12dp"-->
+<!--            android:text="@string/save_photo"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/btCam"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -107,10 +100,11 @@
         tools:visibility="visible" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnAppInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
         android:padding="12dp"
         android:text="@string/info"
         android:textAllCaps="false"
@@ -118,25 +112,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Switch
-        android:id="@+id/swSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:padding="8dp"
-        android:text="switch"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvResult" />
+<!--    <Switch-->
+<!--        android:id="@+id/swSwitch"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:padding="8dp"-->
+<!--        android:text="switch"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tvResult" />-->
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="CheckBox"
-        app:layout_constraintBottom_toBottomOf="@+id/swSwitch"
-        app:layout_constraintStart_toEndOf="@+id/swSwitch"
-        app:layout_constraintTop_toTopOf="@+id/swSwitch" />
+<!--    <CheckBox-->
+<!--        android:id="@+id/checkBox"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:text="CheckBox"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/swSwitch"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/swSwitch"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/swSwitch" />-->
 
     <ImageView
         android:id="@+id/ivPhoto"
@@ -145,7 +139,7 @@
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/tvResult" />
 
     <FrameLayout
         android:id="@+id/progress"

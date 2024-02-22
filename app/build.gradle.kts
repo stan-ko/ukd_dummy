@@ -46,17 +46,6 @@ android {
         }
     }
 
-//    signingConfigs {
-//        release {
-//            storeFile file("ukd_cert.keystore")
-//            storePassword ""
-//            keyAlias "key0"
-//            keyPassword ""
-//        }
-//        debug {
-//            storeFile file("ukd_cert.keystore")
-//        }
-//    }
 }
 
 dependencies {
