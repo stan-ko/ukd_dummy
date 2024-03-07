@@ -23,6 +23,9 @@
     <string name="dialog_permission_camera_message">In order to make photo you must grant permission to use camera</string>
     <string name="dialog_camera_permission_title">Camera Permission</string>
     <string name="open_settings">Open Settings</string>
+    <string name="email">Email:</string>
+    <string name="network_api_error">Network/API error</string>
+    <string name="something_went_wrong">Something went wrong - please try again later</string>
 
 
 </resources>

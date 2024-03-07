@@ -28,11 +28,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.io.File;
 
-public class MainActivity extends AppCompatActivity {
+import ua.ukd.dummy.net.NetActivity;
 
-    private static final int RC_CAMERA_PERMISSION = 1025;
-    private static final int RC_CAMERA = 1024;
-    private File photoFile;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
         View btAppInfo = findViewById(R.id.btnAppInfo);
         btAppInfo.setOnClickListener(view -> showInfo());
 
+        View btNet = findViewById(R.id.btnNet);
+        btNet.setOnClickListener(view -> startActivity(new Intent(this, NetActivity.class)));
     }
 
 

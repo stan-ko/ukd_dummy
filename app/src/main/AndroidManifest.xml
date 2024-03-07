@@ -36,6 +36,7 @@
 
         <activity android:name=".SignUpActivity" />
         <activity android:name=".SignInActivity" />
+        <activity android:name="ua.ukd.dummy.net.NetActivity" />
 
 
     </application>
