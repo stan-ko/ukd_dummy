@@ -27,6 +27,8 @@ import ua.ukd.dummy.R;
 
 public class NetActivity extends AppCompatActivity {
 
+    private static boolean useDynamicBuildView = true;
+
     private ViewGroup rootView;
     private RecyclerView recyclerView;
     private UserAdapter userAdapter;
@@ -35,25 +37,27 @@ public class NetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_net);
-        recyclerView = findViewById(R.id.recyclerView);
-        progress = findViewById(R.id.progress);
-        
-//        rootView = new FrameLayout(this);
-//        ViewGroup.LayoutParams commonLP = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//        rootView.setLayoutParams(commonLP);
-//        rootView.setBackgroundColor(Color.GRAY);
-//        setContentView(rootView);
-//        recyclerView = new RecyclerView(this);
-////        final ViewGroup.LayoutParams recyclerLayoutParams = recyclerView.getLayoutParams();
-////        recyclerLayoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-////        recyclerLayoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
-//        recyclerView.setLayoutParams(commonLP);
+        if (!useDynamicBuildView) {
+            // використання статичної вью для активіті (activity_net)
+            setContentView(R.layout.activity_net);
+            recyclerView = findViewById(R.id.recyclerView);
+            progress = findViewById(R.id.progress);
+        } else {
+            // використання динамічної вью для активіті, побудова "на льоту"
+            rootView = new FrameLayout(this);
+            ViewGroup.LayoutParams commonLP = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            rootView.setLayoutParams(commonLP);
+            setContentView(rootView);
+            recyclerView = new RecyclerView(this);
+            recyclerView.setLayoutParams(commonLP);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            rootView.addView(recyclerView);
+            progress = getLayoutInflater().inflate(R.layout.progress, null);
+            rootView.addView(progress);
+        }
+        // загальна частина
         userAdapter = new UserAdapter(new ArrayList<>(0));
         recyclerView.setAdapter(userAdapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        rootView.addView(recyclerView);
-//        progress = getLayoutInflater().inflate(R.layout.progress, rootView);
     }
 
 
